@@ -49,20 +49,18 @@
           <br>
 
           <h1 class="title is-3 publication-title"> 
-            Complete Object Removal via Object-Effect Attention
+            Precise Object and Effect Removal with Adaptive Target-Aware Attention
           </h1>
 
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="https://zjx0101.github.io/" target="_blank">Jixin Zhao</a>,&nbsp;&nbsp;</span>
-            <span class="author-block">
-              <a href="https://shangchenzhou.com/" target="_blank">Shangchen Zhou</a><sup>†</sup>,&nbsp;&nbsp;</span>
+              <a href="https://zjx0101.github.io/" target="_blank">Jixin Zhao<sup>*<sup></a>,&nbsp;&nbsp;</span>
             <span class="author-block">
               <a href="https://wzhouxiff.github.io/" target="_blank">Zhouxia Wang</a>,&nbsp;&nbsp;</span>
             <span class="author-block">
               <a href="https://pq-yang.github.io/" target="_blank">Peiqing Yang</a>,&nbsp;&nbsp;</span> 
             <span class="author-block">
-              <a href="https://www.mmlab-ntu.com/person/ccloy/" target="_blank">Chen Change Loy</a></span>
+              <a href="https://shangchenzhou.com/" target="_blank">Shangchen Zhou<sup>*,†</sup></a>,&nbsp;&nbsp;</span>
             <span class="author-block">
           </div>
 
@@ -70,21 +68,13 @@
             <span class="author-block">S-Lab, Nanyang Technological University </span>
           </div>
 
+          <span class="author-block"><sup>*</sup>Equal contribution</span>
+
           <span class="author-block"><sup>†</sup>Corresponding author</span>
 
 
           <div class="column has-text-centered">
             <div class="publication-links">
-              <!-- PDF Link. -->
-              <!-- <span class="link-block">
-                <a href="./xx.pdf" target="_blank"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-              </span> -->
               <!-- arXiv Link. -->
               <span class="link-block">
                 <a href="https://arxiv.org/abs/2505.22636" target="_blank"
@@ -118,17 +108,16 @@
                 </a>
               </span>
 
-              <!-- Video Link. -->
-              <!-- <span class="link-block">
-                <a href="https://youtu.be/92EHfgCO5-Q" target="_blank"
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/datasets/sczhou/OBERDataset_ObjectClear" target="_blank"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
-                      <i class="fab fa-youtube"></i>
+                    <i class="far fa-images"></i>
                   </span>
-                  <span>Video</span>
+                  <span>Dataset</span>
                 </a>
               </span>
-            </div> -->
 
           </div>
         </div>
@@ -392,17 +381,16 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Object removal requires eliminating not only the target object but also its effects, such as shadows and reflections. 
-            However, diffusion-based inpainting methods often produce artifacts, hallucinate content, alter background, and struggle 
-            to remove object effects accurately. To address this challenge, we introduce a new dataset for OBject-Effect Removal, 
-            named <b>OBER</b>, which provides paired images with and without object effects, along with precise masks for both 
-            objects and their associated visual artifacts. The dataset comprises high-quality captured and simulated data, covering 
-            diverse object categories and complex multi-object scenes. Building on <b>OBER</b>, we propose a novel framework, 
-            <b>ObjectClear</b>, which incorporates an object-effect attention mechanism to guide the model toward the foreground 
-            removal regions by learning attention masks, effectively decoupling foreground removal from background reconstruction. 
-            Furthermore, the predicted attention map enables an attention-guided fusion strategy during inference, greatly preserving 
-            background details. Extensive experiments demonstrate that <b>ObjectClear</b> significantly outperforms existing methods, 
-            achieving superior object-effect removal quality and background fidelity, especially in complex scenarios.
+            Object removal requires eliminating not only the target object but also its associated visual effects such as shadows and reflections. 
+            However, diffusion-based inpainting and removal methods often introduce artifacts, hallucinate contents, alter background, and struggle 
+            to remove object effects accurately. To address these challenges, we propose <b>ObjectClear</b>, a novel framework that decouples 
+            foreground removal from background reconstruction via an adaptive target-aware attention mechanism. This design empowers the model to 
+            precisely localize and remove both objects and their effects while maintaining high background fidelity. Moreover, the learned attention 
+            maps are leveraged for an attention-guided fusion strategy during inference, further enhancing visual consistency. To facilitate the 
+            training and evaluation, we construct <b>OBER</b>, a large-scale dataset for OBject-Effect Removal, which provides paired images with 
+            and without object-effects, along with precise masks for both objects and their effects. The dataset comprises high-quality captured and 
+            simulated data, covering diverse objects, effects, and complex multi-object scenes. Extensive experiments demonstrate that <b>ObjectClear</b> 
+            outperforms prior methods, achieving superior object-effect removal quality and background fidelity, especially in challenging scenarios. 
           </p>
         </div>
       </div>
@@ -457,7 +445,7 @@
         <h2 class="title is-3">ObjectClear Pipeline</h2>
         <div class="content has-text-justified">
           <p>
-            Given an input image and a target object mask, ObjectClear employs an Object-Effect Attention mechanism to guide the model toward 
+            Given an input image and a target object mask, ObjectClear employs an Adaptive Target-Aware Attention mechanism to guide the model toward 
             foreground removal regions by learning attention masks. The predicted mask further enables an Attention-Guided Fusion strategy during 
             inference, which substantially preserves background details.
           </p>
@@ -470,36 +458,17 @@
   </div>
 </section>
 
-<!-- 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code>@InProceedings{zhou2023propainter,
-      title     = {{ProPainter}: Improving Propagation and Transformer for Video Inpainting},
-      author    = {Zhou, Shangchen and Li, Chongyi and Chan, Kelvin C.K and Loy, Chen Change},
-      booktitle = {Proceedings of IEEE International Conference on Computer Vision (ICCV)},
-      year      = {2023}
+    <pre><code>@InProceedings{zhao2026objectclear,
+      title     = {Precise Object and Effect Removal with Adaptive Target-Aware Attention},
+      author    = {Zhao, Jixin and Wang, Zhouxia and Yang, Peiqing and Zhou, Shangchen},
+      booktitle = {CVPR},
+      year      = {2026},
     }</code></pre>
   </div>
-</section> -->
-<!-- 
-
-<footer class="footer">
-  <div class="container">
-    <div class="content has-text-centered">
-      <a class="icon-link" href="https://arxiv.org/abs/2309.03897" target="_blank">
-        <i class="fas fa-file-pdf"></i>
-      </a>
-      <a class="icon-link" href="https://github.com/sczhou/ProPainter" target="_blank">
-        <i class="fab fa-github"></i>
-      </a>
-      <a class="icon-link" href="https://huggingface.co/spaces/sczhou/ProPainter" target="_blank">
-        <img src="./assets/images/hf_black.png">
-      </a>
-      <a class="icon-link" href="https://youtu.be/92EHfgCO5-Q" target="_blank">
-        <i class="fab fa-youtube"></i>
-      </a>
-    </div> -->
+</section>
 
     <div class="columns is-centered">
       <div class="column is-8">
